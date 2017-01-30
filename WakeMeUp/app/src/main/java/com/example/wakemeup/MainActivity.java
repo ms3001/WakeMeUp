@@ -1,5 +1,6 @@
 package com.example.wakemeup;
 
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.AlarmManager;
@@ -8,14 +9,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.sql.Time;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
     private AlarmManagerBroadcastReceiver alarm;
+    private TextToSpeech reader;
 
 
     @Override
@@ -26,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onetimeTimer(View view){
+        TimePicker whatTime = (TimePicker) findViewById(R.id.timePicker);
+        whatTime.
         System.out.println("AYyyyyyy");
         Context context = this.getApplicationContext();
         if(alarm != null){
