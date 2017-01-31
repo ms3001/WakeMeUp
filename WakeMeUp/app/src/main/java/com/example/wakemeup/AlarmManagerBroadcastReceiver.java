@@ -23,6 +23,7 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "YOUR TAG");
         //Acquire the lock
         wl.acquire();
+        sendMessage(context);
 
         //You can do the processing here.
         Bundle extras = intent.getExtras();
@@ -57,4 +58,10 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
         am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000L, pi);
     }
+
+    public void sendMessage(Context context) {
+        Intent intent = new Intent(context, AlarmActivity.class);
+        context.startActivity(intent);
+    }
+
 }

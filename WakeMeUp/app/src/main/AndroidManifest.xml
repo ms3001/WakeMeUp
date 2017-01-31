@@ -18,9 +18,10 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmManagerBroadcastReceiver"></receiver>
+        <receiver android:name=".AlarmManagerBroadcastReceiver" />
 
-        <activity android:name=".PassiveActivity"></activity>
+        <activity android:name=".PassiveActivity" />
+        <activity android:name=".AlarmActivity"></activity>
     </application>
 
 </manifest>

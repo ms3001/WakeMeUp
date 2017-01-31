@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private AlarmManagerBroadcastReceiver alarm;
-    private TextToSpeech reader;
 
 
     @Override
