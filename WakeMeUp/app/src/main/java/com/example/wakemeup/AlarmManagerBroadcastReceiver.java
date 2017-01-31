@@ -42,16 +42,6 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         wl.release();
     }
 
-    public void SetAlarm(Context context)
-    {
-        AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
-        intent.putExtra(ONE_TIME, Boolean.FALSE);
-        PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-        //After after 5 seconds
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 5 , pi);
-    }
-
     public void CancelAlarm(Context context)
     {
         Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
