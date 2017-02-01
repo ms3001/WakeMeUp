@@ -1,15 +1,14 @@
 package com.example.wakemeup;
 
-import android.app.Application;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.Voice;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import java.util.Locale;
 
@@ -26,19 +25,24 @@ public class AlarmActivity extends Activity {
                         WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN |
+                        WindowManager.LayoutParams.FLAG_FULLSCREEN |
                         WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         playVideo();
-
-
-        readCal();
+        Button go = (Button) findViewById(R.id.button2);
+        go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                readCal();
+            }
+        });
 
 
     }
 
     public void playVideo() {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=cxLG2wtE7TM")));
 
     }
 

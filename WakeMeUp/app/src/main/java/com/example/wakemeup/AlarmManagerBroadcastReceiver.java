@@ -51,16 +51,19 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         alarmManager.cancel(sender);
     }
 
-    public void setOnetimeTimer(Context context){
+    public void setOnetimeTimer(Context context, int h, int m){
         AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
         intent.putExtra(ONE_TIME, Boolean.TRUE);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000L, pi);
+
+        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 3600000*h + 60000*m, pi);
     }
 
     public void sendMessage(Context context) {
         Intent intent = new Intent(context, AlarmActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         context.startActivity(intent);
     }
 

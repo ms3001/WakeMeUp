@@ -1,6 +1,9 @@
 package com.example.wakemeup;
 
-import android.speech.tts.TextToSpeech;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private AlarmManagerBroadcastReceiver alarm;
+    private int hour, min;
 
 
     @Override
@@ -28,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         Context context = this.getApplicationContext();
         if(alarm != null){
-            alarm.setOnetimeTimer(context);
+            TimePicker whatTime = (TimePicker) findViewById(R.id.timePicker);
+            hour =  whatTime.getHour() % 12;
+            min = whatTime.getMinute();
+            alarm.setOnetimeTimer(context, hour, min);
             sendMessage();
         }else{
             Toast.makeText(context, "Alarm is null", Toast.LENGTH_SHORT).show();
@@ -36,12 +43,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage() {
-        Intent intent = new Intent(this, PassiveActivity.class);
         TimePicker whatTime = (TimePicker) findViewById(R.id.timePicker);
-        int hour =  whatTime.getHour();
-        int min = whatTime.getMinute();
-        String msg = hour + ":" + min;
-        intent.putExtra("AlarmTime", msg);
+        hour =  whatTime.getHour() % 12;
+        min = whatTime.getMinute();
+        Date date = new Date(System.currentTimeMillis() + 3600000*hour + 60000*min);
+        Format formatter = new SimpleDateFormat("HH:mm a");
+        String dateFormatted = formatter.format(date);
+        Intent intent = new Intent(this, PassiveActivity.class);
+        intent.putExtra("AlarmTime", dateFormatted);
         startActivity(intent);
     }
 

@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:text="Pick a time to wake up!" />
+        android:text="How long till the alarm should ring?" />
 
     <Button
         android:text="done"
