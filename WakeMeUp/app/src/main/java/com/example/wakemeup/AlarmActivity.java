@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
+import android.speech.tts.Voice;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -15,6 +16,7 @@ import java.util.Locale;
 public class AlarmActivity extends Activity {
 
     private TextToSpeech reader;
+    private Voice myVoice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +32,6 @@ public class AlarmActivity extends Activity {
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         playVideo();
 
-        //Intent intent = getIntent();
-
-        reader = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int i) {
-
-            }
-        });
-        reader.setLanguage(Locale.ENGLISH);
 
         readCal();
 
@@ -50,8 +43,22 @@ public class AlarmActivity extends Activity {
     }
 
     public void readCal() {
-        reader.speak("OK let's play an ARAM", TextToSpeech.QUEUE_ADD, null, "one");
-        System.out.println("");
+        reader = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if (i == TextToSpeech.SUCCESS) {
+                    myVoice = new Voice("Lmao",Locale.ENGLISH,Voice.QUALITY_VERY_HIGH,Voice.LATENCY_VERY_LOW,false,null);
+                    reader.setVoice(myVoice);
+                    reader.setLanguage(Locale.ENGLISH);
+                    reader.speak("Hello world", TextToSpeech.QUEUE_ADD, null, "one");
+                    System.out.println("hello");
+
+                }
+
+            }
+        });
+        //reader.shutdown();
+
     }
 
 }
