@@ -3,6 +3,7 @@ package com.example.wakemeup;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
 import android.os.Bundle;
@@ -29,7 +30,12 @@ public class AlarmActivity extends Activity {
                         WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-        playVideo();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                playVideo();
+            }
+        }, 1000);
         Button go = (Button) findViewById(R.id.button2);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,11 +48,15 @@ public class AlarmActivity extends Activity {
     }
 
     public void playVideo() {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=cxLG2wtE7TM")));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=R0XjwtP_iTY")));
 
     }
 
     public void readCal() {
+
+        // Get the events from your google calendar in some type of arrayList<String>
+
+
         reader = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
