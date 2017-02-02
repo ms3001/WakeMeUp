@@ -48,15 +48,18 @@ public class AlarmActivity extends Activity {
     }
 
     public void playVideo() {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=R0XjwtP_iTY")));
+        //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=R0XjwtP_iTY")));
 
     }
 
     public void readCal() {
+        Intent intent = new Intent(this, UserCal.class);
+        startActivity(intent);
+
 
         // Get the events from your google calendar in some type of arrayList<String>
 
-
+        /**
         reader = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
@@ -71,6 +74,7 @@ public class AlarmActivity extends Activity {
 
             }
         });
+         */
         //reader.shutdown();
 
     }
