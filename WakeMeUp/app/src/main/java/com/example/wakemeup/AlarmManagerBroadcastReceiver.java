@@ -57,7 +57,7 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         intent.putExtra(ONE_TIME, Boolean.TRUE);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
 
-        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 360000*h + 6000*m, pi);
+        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 3600000*h + 60000*m, pi);
     }
 
     public void sendMessage(Context context) {
