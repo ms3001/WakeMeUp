@@ -372,7 +372,7 @@ public class UserCal extends Activity
         private List<String> getDataFromApi() throws IOException {
             // List the next 10 events from the primary calendar.
             DateTime now = new DateTime(System.currentTimeMillis());
-            DateTime end = new DateTime(86400000  * (System.currentTimeMillis() / 86400000) + 43200000);
+            DateTime end = new DateTime(86400000  * (System.currentTimeMillis() / 86400000) + 86400000);
             List<String> eventStrings = new ArrayList<String>();
             Events events = mService.events().list("primary")
                     .setTimeMax(end)
@@ -408,7 +408,6 @@ public class UserCal extends Activity
             if (output == null || output.size() == 0) {
                 System.out.println("No results returned.");
             } else {
-                System.out.println(output);
                 events.addAll(output);
             }
         }

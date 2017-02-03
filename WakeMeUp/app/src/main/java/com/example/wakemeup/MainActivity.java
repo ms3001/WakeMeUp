@@ -14,8 +14,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 
+/*
+ * Class that app starts on.
+ */
 public class MainActivity extends AppCompatActivity {
-
 
     private AlarmManagerBroadcastReceiver alarm;
     private int hour, min;
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         alarm = new AlarmManagerBroadcastReceiver();
     }
 
+    /**
+     * Function to set an alarm, called when button is clicked.
+     * @param view the view that was clicked
+     */
     public void onetimeTimer(View view){
 
         Context context = this.getApplicationContext();
@@ -35,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             TimePicker whatTime = (TimePicker) findViewById(R.id.timePicker);
             hour =  whatTime.getHour() % 12;
             min = whatTime.getMinute();
+            //Currently sets the alarm to occur in hour hours and min minutes from current time
             alarm.setOnetimeTimer(context, hour, min);
             sendMessage();
         }else{
@@ -42,10 +49,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Function to start a new activity (passive activity)
+     */
     public void sendMessage() {
         TimePicker whatTime = (TimePicker) findViewById(R.id.timePicker);
         hour =  whatTime.getHour() % 12;
         min = whatTime.getMinute();
+        //allows me to post what time the alarm will ring so I can display it on the next activity
         Date date = new Date(System.currentTimeMillis() + 3600000*hour + 60000*min);
         Format formatter = new SimpleDateFormat("HH:mm a");
         String dateFormatted = formatter.format(date);
