@@ -24,7 +24,7 @@ public class AlarmActivity extends Activity {
 
     private TextToSpeech reader;
     private Voice myVoice;
-    private String toBeRead = "Good morning Manyu. ";
+    private String toBeRead = "Good morning " + MainActivity.userName + ".";
     private Button go;
 
     @Override
@@ -41,7 +41,7 @@ public class AlarmActivity extends Activity {
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        //Need to delay a quick second, or else for some reason the screen doesn't always wake
+        //Need to delay here for a second, or else for some reason the screen doesn't always wake
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -75,7 +75,7 @@ public class AlarmActivity extends Activity {
                 AudioManager.STREAM_MUSIC,
                 am.getStreamMaxVolume(AudioManager.STREAM_MUSIC),
                 0);
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=R0XjwtP_iTY")));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MainActivity.URL)));
     }
 
     /*
